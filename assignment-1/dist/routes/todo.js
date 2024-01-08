@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const index_1 = require("../middleware/index");
 const db_1 = require("../db");
+const index_1 = require("../middleware/index");
 const router = express_1.default.Router();
 // Zod => input validation library...
 router.post("/todos", index_1.authenticateJwt, (req, res) => {
