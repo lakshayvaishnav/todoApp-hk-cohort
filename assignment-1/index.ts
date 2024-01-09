@@ -18,5 +18,6 @@ app.listen(port, () => {
 });
 
 mongoose.connect(
-  "mongodb+srv://thelakshayvaishnav:1dUo1DnEvfnSvRPT@cluster0.ziuxmyd.mongodb.net/courses"
+  ""
 );
+// paste your own link in the mongoose connect...
