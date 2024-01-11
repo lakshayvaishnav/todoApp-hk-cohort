@@ -18,3 +18,4 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 mongoose_1.default.connect("mongodb+srv://thelakshayvaishnav:1dUo1DnEvfnSvRPT@cluster0.ziuxmyd.mongodb.net/courses");
+// paste your own link in the mongoose connect...

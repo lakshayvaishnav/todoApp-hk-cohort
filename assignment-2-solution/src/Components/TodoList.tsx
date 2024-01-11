@@ -10,13 +10,10 @@ interface Todo {
   done: boolean;
 }
 
-const TodoList = () => {
+// a custom hook should always start with use
+function useTodos(){
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const authStateValue = useRecoilValue(authState);
-  const navigate = useNavigate()
-
+  const [loading, setloading] = useState<boolean>(true)
   useEffect(() => {
     const getTodos = async () => {
       const response = await fetch("http://localhost:3000/todo/todos", {
@@ -25,9 +22,24 @@ const TodoList = () => {
       // Todo: Create a type for the response that you get back from the server
       const data = await response.json();
       setTodos(data);
+      setloading(false)
     };
     getTodos();
+
   }, [authState.token]);
+
+  return {loading,todos}
+}
+
+const TodoList = () => {
+  
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const authStateValue = useRecoilValue(authState);
+  const {loading,todos} = useTodos()
+  const navigate = useNavigate()
+
+ 
 
   const addTodo = async () => {
     const response = await fetch("http://localhost:3000/todo/todos", {

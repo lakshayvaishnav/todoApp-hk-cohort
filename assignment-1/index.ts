@@ -1,12 +1,12 @@
-import express from "express"
+import express from "express";
 const app = express();
 
 import mongoose from "mongoose";
 const port = 3000;
-import authRoutes from "./routes/auth"
-import todoRoutes from "./routes/todo"
- 
-const cors = require("cors")
+import authRoutes from "./routes/auth";
+import todoRoutes from "./routes/todo";
+
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +18,6 @@ app.listen(port, () => {
 });
 
 mongoose.connect(
-  ""
+  "mongodb+srv://thelakshayvaishnav:1dUo1DnEvfnSvRPT@cluster0.ziuxmyd.mongodb.net/courses"
 );
 // paste your own link in the mongoose connect...

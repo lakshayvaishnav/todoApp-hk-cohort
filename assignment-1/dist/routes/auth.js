@@ -19,10 +19,23 @@ const express_1 = __importDefault(require("express"));
 // const { authenticateJwt, SECRET } = require("../middleware/");
 const middleware_1 = require("../middleware");
 // const { User } = require("../db");
+const zod_1 = require("zod");
 const db_1 = require("../db");
 const router = express_1.default.Router();
+let signupInput = zod_1.z.object({
+    username: zod_1.z.string().min(1).max(10),
+    password: zod_1.z.string().min(6).max(10),
+});
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, password } = req.body;
+    const parsedInput = signupInput.safeParse(req.body);
+    if (!parsedInput.success) {
+        res.status(411).json({
+            error: parsedInput.error,
+        });
+        return;
+    }
+    const username = parsedInput.data.username;
+    const password = parsedInput.data.password;
     const user = yield db_1.User.findOne({ username });
     if (user) {
         res.status(403).json({ message: "User already exists" });

@@ -1,13 +1,14 @@
 import express from "express";
 import { Todo } from "../db";
 import { authenticateJwt } from "../middleware/index";
-
+import { z } from "zod";
 const router = express.Router();
 
 interface CreateTodo {
   title: string;
   description: string;
 }
+
 // Zod => input validation library...
 router.post("/todos", authenticateJwt, (req, res) => {
   const inputs: CreateTodo = req.body;
