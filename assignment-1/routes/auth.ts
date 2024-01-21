@@ -2,22 +2,12 @@
 import jwt from "jsonwebtoken";
 // const express = require('express');
 import express from "express";
-// const { authenticateJwt, SECRET } = require("../middleware/");
 import { authenticateJwt, SECRET } from "../middleware";
-// const { User } = require("../db");
-import { z } from "zod";
+import { TypeOf, z } from "zod";
 import { User } from "../db";
+import {signupInput,loginInput} from "@lxsh/common"
+
 const router = express.Router();
-
-let signupInput = z.object({
-  username: z.string().min(20).max(30),
-  password: z.string().min(6).max(10),
-});
-
-let loginInput = z.object({
-  username: z.string().min(20).max(30),
-  password: z.string().min(6).max(10),
-});
 
 router.post("/signup", async (req, res) => {
   const parsedInput = signupInput.safeParse(req.body);

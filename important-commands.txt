@@ -1,0 +1,12 @@
+npm login
+npm pack
+npm publish --access=public
+new-item .npmignore
+npm publishcd
+
+
+things to add in tsconfig in common :- 
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true
